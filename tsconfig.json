@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"lib": ["ESNext"],
+		"strict": true,
+		"declarationDir": "dts",
+		"outDir": "dist",
+		"incremental": true,
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}
