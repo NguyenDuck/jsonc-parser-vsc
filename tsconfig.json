@@ -3,7 +3,6 @@
 		"module": "CommonJS",
 		"lib": ["ESNext"],
 		"strict": true,
-		"declarationDir": "dts",
 		"outDir": "dist",
 		"incremental": true,
 		"sourceMap": true,
