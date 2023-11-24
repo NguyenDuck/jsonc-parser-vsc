@@ -9,6 +9,15 @@ import { JsonNumber } from "./types/Number"
 import { JsonObject } from "./types/Object"
 import { JsonString } from "./types/String"
 
+export type types = {
+    JsonArray: JsonArray,
+    JsonObject: JsonObject,
+    JsonString: JsonString,
+    JsonNumber: JsonNumber,
+    JsonBoolean: JsonBoolean,
+    JsonNull: JsonNull,
+    JsonComment: JsonComment,
+}
 
 export function parse(text: string) {
     let name: JsonString | undefined
