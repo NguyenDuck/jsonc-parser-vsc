@@ -32,4 +32,8 @@ export class JsonString extends WithPosition implements CanHaveParent {
     public toString() {
         return this.value
     }
+
+    public toJSON() {
+        return this.value
+    }
 }

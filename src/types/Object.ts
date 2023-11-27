@@ -79,4 +79,17 @@ export class JsonObject extends WithPosition implements CanHaveParent {
         })
         return JSON.stringify(s)
     }
+
+    public toJSON() {
+        let obj: any = {}
+        this.children.key.forEach(k => {
+            const value = this.get(k)
+            if (value instanceof JsonObject || value instanceof JsonArray) {
+                obj[k] = value.toJSON()
+            } else {
+                obj[k] = value?.toJSON()
+            }
+        })
+        return obj
+    }
 }

@@ -51,4 +51,8 @@ export class JsonArray extends WithPosition implements CanHaveParent {
     public toString() {
         return this.children.flatMap(v => v.toString())
     }
+
+    public toJSON() {
+        return this.children.flatMap(v => v.toJSON())
+    }
 }
