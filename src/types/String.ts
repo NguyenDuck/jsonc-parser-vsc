@@ -7,6 +7,8 @@ import { WithPosition } from "./WithPosition"
 
 export class JsonString extends WithPosition implements CanHaveParent {
 
+    public readonly type = 'string'
+
     public parent?: JsonObject | JsonArray
 
     public value!: string

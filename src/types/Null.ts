@@ -7,6 +7,8 @@ import { WithPosition } from "./WithPosition"
 
 export class JsonNull extends WithPosition implements CanHaveParent {
 
+    public readonly type = 'null'
+
     public parent?: JsonObject | JsonArray
 
     public value = null

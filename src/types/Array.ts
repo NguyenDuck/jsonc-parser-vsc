@@ -12,6 +12,8 @@ declare type JsonArrayValue = JsonObject | JsonString | JsonNumber | JsonBoolean
 
 export class JsonArray extends WithPosition implements CanHaveParent {
 
+    public readonly type = 'array'
+
     public parent?: JsonObject | JsonArray
 
     private children: JsonArrayValue[] = []

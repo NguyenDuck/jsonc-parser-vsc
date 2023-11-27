@@ -7,6 +7,8 @@ import { WithPosition } from "./WithPosition"
 
 export class JsonBoolean extends WithPosition implements CanHaveParent {
 
+    public readonly type = 'boolean'
+
     public parent?: JsonObject | JsonArray
 
     public value!: boolean

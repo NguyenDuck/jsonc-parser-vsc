@@ -1,6 +1,6 @@
 {
   "name": "jsonc-parser-vsc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Json With Comments Parser integrated with vscode",
   "main": "dist/main.js",
   "scripts": {

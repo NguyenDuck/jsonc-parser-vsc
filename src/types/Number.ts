@@ -7,6 +7,10 @@ import { WithPosition } from "./WithPosition"
 
 export class JsonNumber extends WithPosition implements CanHaveParent {
 
+    public get type(): 'number' | 'integer' {
+        return Number.isInteger(this.value) ? 'integer' : 'number'
+    }
+
     public parent?: JsonObject | JsonArray
 
     public value!: number
