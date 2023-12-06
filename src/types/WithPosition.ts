@@ -9,4 +9,14 @@ export class WithPosition {
     public toRange() {
         return new Range(this.start, this.end)
     }
+
+    public get pos(): {
+        start: Position,
+        end: Position
+    } {
+        return {
+            start: this.start,
+            end: this.end
+        }
+    }
 }

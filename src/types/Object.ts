@@ -7,7 +7,7 @@ import { JsonString } from "./String"
 import { JsonNull } from "./Null"
 import { JsonNumber } from "./Number"
 
-declare type JsonObjectValue = JsonArray | JsonString | JsonNumber | JsonBoolean | JsonNull
+declare type JsonObjectValue = JsonObject | JsonArray | JsonString | JsonNumber | JsonBoolean | JsonNull
 
 
 export class JsonObject extends WithPosition implements CanHaveParent {
@@ -18,7 +18,7 @@ export class JsonObject extends WithPosition implements CanHaveParent {
 
     private children: {
         key: string[],
-        pos: WithPosition[],
+        pos: ({ start: Position, end: Position })[],
         value: JsonObjectValue[]
     }
 
@@ -56,11 +56,15 @@ export class JsonObject extends WithPosition implements CanHaveParent {
     public set(key: string | JsonString, value: JsonObjectValue): void {
         const rawKey = (typeof key === 'string' ? key : key.value)
         const index = this.children.key.indexOf(rawKey)
-        if (index === -1) {
-            this.children.pos[index] = value
+        if (index !== -1) {
+            this.children.pos[index] = value.pos
+            this.children.value[index] = value
+            return
         }
 
-        this.children.key
+        this.children.key.push(rawKey)
+        this.children.pos.push(value.pos)
+        this.children.value.push(value)
     }
 
     public has(key: string | JsonString): boolean {
@@ -74,7 +78,7 @@ export class JsonObject extends WithPosition implements CanHaveParent {
             if (value instanceof JsonObject || value instanceof JsonArray) {
                 s[k] = value.toString()
             } else {
-                s[k] = value?.toString()
+                s[k] = value!.toString()
             }
         })
         return JSON.stringify(s)
@@ -87,7 +91,7 @@ export class JsonObject extends WithPosition implements CanHaveParent {
             if (value instanceof JsonObject || value instanceof JsonArray) {
                 obj[k] = value.toJSON()
             } else {
-                obj[k] = value?.toJSON()
+                obj[k] = value!.toJSON()
             }
         })
         return obj

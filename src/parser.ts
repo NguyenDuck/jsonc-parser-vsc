@@ -17,10 +17,11 @@ export function parse(text: string) {
 
     const visitor: JSONVisitor = {
         onObjectBegin: ({ position }) => {
-            let t = JsonObject.from({ start: position })
+            const t = JsonObject.from({ start: position })
 
             if (current) {
                 if (current instanceof JsonArray) current.add(t)
+                if (current instanceof JsonObject) current.set(name!, t)
                 t.parent = current
             }
 
@@ -35,7 +36,7 @@ export function parse(text: string) {
             current = current.parent ?? current
         },
         onArrayBegin: ({ position }) => {
-            let t = JsonArray.from({ start: position })
+            const t = JsonArray.from({ start: position })
 
             if (current) {
                 if (current instanceof JsonObject) current.set(name!, t)
@@ -118,7 +119,6 @@ interface JSONVisitor {
 
 function visit(text: string, visitor?: JSONVisitor): any {
     const scanner = createScanner(text)
-    let endPosition: Position | undefined
 
     const onObjectBegin = visitor?.onObjectBegin || (() => { }),
         onObjectProperty = visitor?.onObjectProperty || (() => { }),
@@ -358,20 +358,16 @@ function visit(text: string, visitor?: JSONVisitor): any {
     }
 
     function getStartPosition(): Position {
-        return new Position(scanner.getTokenStartLine(), scanner.getTokenStartCharacter()).translate(0, 1)
+        return new Position(scanner.getTokenStartLine(), scanner.getTokenStartCharacter())
     }
 
     function getEndPosition(): Position {
-        if (!endPosition) {
-            const localScanner = createScanner(scanner.getTokenValue())
-            while (localScanner.scan() !== SyntaxKind.EOF) { }
-            endPosition = new Position(
-                scanner.getTokenStartLine() + localScanner.getTokenStartLine(),
-                scanner.getTokenStartCharacter() + localScanner.getTokenStartCharacter()
-            ).translate(0, 2)
-        }
-
-        return endPosition
+        const localScanner = createScanner(scanner.getTokenValue())
+        while (localScanner.scan() !== SyntaxKind.EOF) { }
+        return new Position(
+            scanner.getTokenStartLine() + localScanner.getTokenStartLine(),
+            scanner.getTokenStartCharacter() + localScanner.getTokenStartCharacter()
+        )
     }
 
     scanNext()
