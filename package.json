@@ -1,29 +1,29 @@
 {
-  "name": "jsonc-parser-vsc",
-  "version": "1.0.7",
-  "description": "Json With Comments Parser integrated with vscode",
-  "main": "dist/main.js",
-  "scripts": {
-    "test": "tsc -watch -p tsconfig.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/NguyenDuck/jsonc-parser-vsc.git"
-  },
-  "keywords": [
-    "jsonc",
-    "parser",
-    "vscode",
-    "api"
-  ],
-  "author": "NguyenDuck",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/NguyenDuck/jsonc-parser-vsc/issues"
-  },
-  "homepage": "https://github.com/NguyenDuck/jsonc-parser-vsc",
-  "dependencies": {
-    "@types/vscode": "^1.84.2",
-    "jsonc-parser": "^3.2.0"
-  }
+	"name": "jsonc-parser-vsc",
+	"version": "1.0.8",
+	"description": "Json With Comments Parser integrated with vscode",
+	"main": "dist/main.js",
+	"scripts": {
+		"test": "tsc -watch -p tsconfig.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/NguyenDuck/jsonc-parser-vsc.git"
+	},
+	"keywords": [
+		"jsonc",
+		"parser",
+		"vscode",
+		"api"
+	],
+	"author": "NguyenDuck",
+	"license": "UNLICENSED",
+	"bugs": {
+		"url": "https://github.com/NguyenDuck/jsonc-parser-vsc/issues"
+	},
+	"homepage": "https://github.com/NguyenDuck/jsonc-parser-vsc",
+	"dependencies": {
+		"@types/vscode": "^1.85.0",
+		"jsonc-parser": "^3.2.0"
+	}
 }
